@@ -12,13 +12,16 @@ class SignInCubit extends Cubit<SignInState> {
   final AuthenticationRepository _repository = AuthenticationRepository();
   SignInCubit() : super(const SignInState());
 
-  void signIn() async {
+  void signIn({
+    required String email,
+    required String password,
+  }) async {
     state.copyWith(
       isLoading: true,
     );
     final params = SignInParams(
-      email: 'angga@gmail.com',
-      password: 'password123',
+      email: email,
+      password: password,
     );
     try {
       await _repository.signIn(params);

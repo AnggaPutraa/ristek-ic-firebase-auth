@@ -13,9 +13,11 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../feature/authentication/signin/presentation/cubit/sign_in_cubit.dart'
-    as _i3;
-import '../feature/authentication/signup/presentation/cubit/sign_up_cubit.dart'
     as _i4;
+import '../feature/authentication/signup/presentation/cubit/sign_up_cubit.dart'
+    as _i5;
+import '../feature/onboarding/presentation/cubit/app_initialization_cubit.dart'
+    as _i3;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -28,8 +30,9 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i3.SignInCubit>(() => _i3.SignInCubit());
-    gh.factory<_i4.SignUpCubit>(() => _i4.SignUpCubit());
+    gh.factory<_i3.AppInitializationCubit>(() => _i3.AppInitializationCubit());
+    gh.factory<_i4.SignInCubit>(() => _i4.SignInCubit());
+    gh.factory<_i5.SignUpCubit>(() => _i5.SignUpCubit());
     return this;
   }
 }

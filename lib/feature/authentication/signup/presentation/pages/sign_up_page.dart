@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ic_firebase/core/bases/enums/text_field.dart';
 import 'package:ic_firebase/core/bases/widgets/button.dart';
 import 'package:ic_firebase/core/bases/widgets/scaffold.dart';
@@ -8,6 +9,8 @@ import 'package:ic_firebase/core/bases/widgets/text_field.dart';
 import 'package:ic_firebase/core/theme/base_colors.dart';
 import 'package:ic_firebase/feature/authentication/signup/presentation/cubit/sign_up_cubit.dart';
 import 'package:ic_firebase/services/di.dart';
+
+import '../../../../../core/bases/widgets/auth_header.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -34,11 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return CustomScaffold(
       body: Column(
         children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-            ),
-          ),
+          const AuthHeader(),
           Expanded(
             flex: 5,
             child: Column(
@@ -80,8 +79,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Already Have an Account? ',
                       style: TextStyle(
                         color: BaseColors.white,
@@ -89,12 +88,17 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontSize: 16,
                       ),
                     ),
-                    Text(
-                      'Sign In',
-                      style: TextStyle(
-                        color: BaseColors.primary,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                    InkWell(
+                      onTap: (){
+                        context.go('/auth/signin');
+                      },
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          color: BaseColors.primary,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ],
@@ -107,3 +111,4 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
+
