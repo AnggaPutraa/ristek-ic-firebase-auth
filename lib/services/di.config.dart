@@ -12,8 +12,10 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../feature/authentication/core/data/data_source/authentication_data_source.dart'
+import '../feature/authentication/signin/presentation/cubit/sign_in_cubit.dart'
     as _i3;
+import '../feature/authentication/signup/presentation/cubit/sign_up_cubit.dart'
+    as _i4;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -26,8 +28,8 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i3.AuthenticationRemoteDataSource>(
-        () => _i3.AuthenticationRemoteDataSourceImpl());
+    gh.factory<_i3.SignInCubit>(() => _i3.SignInCubit());
+    gh.factory<_i4.SignUpCubit>(() => _i4.SignUpCubit());
     return this;
   }
 }

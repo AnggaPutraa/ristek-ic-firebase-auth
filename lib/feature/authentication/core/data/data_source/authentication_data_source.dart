@@ -1,22 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ic_firebase/feature/authentication/signin/domain/use_case/sign_in_params.dart';
 import 'package:ic_firebase/feature/authentication/signup/domain/use_case/sign_up_params.dart';
-import 'package:injectable/injectable.dart';
 
-abstract class AuthenticationRemoteDataSource {
-  Future<UserCredential>? signIn(
-    SignInParams signInParams,
-  );
-  Future<void>? signUp(
-    SignUpParams signUpParams,
-  );
-  Future<void>? signOut();
-}
+class AuthenticationRemoteDataSource {
 
-@Injectable(as: AuthenticationRemoteDataSource)
-class AuthenticationRemoteDataSourceImpl
-    implements AuthenticationRemoteDataSource {
-  @override
+  Future<User?> currentUser() async {
+    try {
+      return FirebaseAuth.instance.currentUser;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<UserCredential>? signIn(SignInParams signInParams) {
     final email = signInParams.email;
     final password = signInParams.password;
@@ -31,7 +26,6 @@ class AuthenticationRemoteDataSourceImpl
     }
   }
 
-  @override
   Future<void>? signUp(SignUpParams signUpParams) {
     final email = signUpParams.email;
     final password = signUpParams.password;
@@ -46,7 +40,6 @@ class AuthenticationRemoteDataSourceImpl
     }
   }
 
-  @override
   Future<void>? signOut() {
     try {
       return FirebaseAuth.instance.signOut();
