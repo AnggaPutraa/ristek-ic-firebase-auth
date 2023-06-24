@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ic_firebase/core/bases/widgets/button.dart';
 import 'package:ic_firebase/core/bases/widgets/scaffold.dart';
 import 'package:ic_firebase/core/theme/base_colors.dart';
 import 'package:ic_firebase/feature/main/presentation/cubit/main_cubit.dart';
 import 'package:ic_firebase/services/di.dart';
+
+import '../../../../core/bases/constants/assets.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -26,13 +30,28 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: BlocBuilder<MainCubit, MainState>(
+      body: BlocConsumer<MainCubit, MainState>(
         bloc: _cubit,
+        listener: (context, state) {
+          if (state.isSuccessedSignOut) {
+            context.go('/');
+          }
+        },
         builder: (context, state) => Center(
           child: state.isAuthenticated
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SvgPicture.asset(
+                      Assets.firebase,
+                      width: 160,
+                      height: 160,
+                      colorFilter: const ColorFilter.mode(
+                        BaseColors.primary,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
                     const Text(
                       'Currently Logged In as',
                       style: TextStyle(

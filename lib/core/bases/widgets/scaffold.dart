@@ -3,9 +3,11 @@ import 'package:ic_firebase/core/theme/base_colors.dart';
 
 class CustomScaffold extends StatelessWidget {
   final Widget body;
+  final Color? backgroundColor;
   const CustomScaffold({
     required this.body,
-    super.key,
+    this.backgroundColor,
+    super.key, 
   });
 
   @override
@@ -20,7 +22,7 @@ class CustomScaffold extends StatelessWidget {
           child: body,
         ),
       ),
-      backgroundColor: BaseColors.black,
+      backgroundColor: backgroundColor ?? BaseColors.black,
       resizeToAvoidBottomInset: true,
     );
   }

@@ -4,14 +4,14 @@ class MainState extends Equatable {
   final bool isLoading;
   final bool isAuthenticated;
   final bool isError;
-  final bool isSuccess;
+  final bool isSuccessedSignOut;
   final String email;
 
   const MainState({
     this.isLoading = false,
     this.isAuthenticated = false,
     this.isError = false,
-    this.isSuccess = false,
+    this.isSuccessedSignOut = false,
     this.email = '',
   });
 
@@ -19,14 +19,14 @@ class MainState extends Equatable {
     bool? isLoading,
     bool? isAuthenticated,
     bool? isError,
-    bool? isSuccess,
+    bool? isSuccessedSignOut,
     String? email,
   }) {
     return MainState(
       isLoading: isLoading ?? this.isLoading,
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
       isError: isError ?? this.isError,
-      isSuccess: isSuccess ?? this.isSuccess,
+      isSuccessedSignOut: isSuccessedSignOut ?? this.isSuccessedSignOut,
       email: email ?? this.email,
     );
   }
@@ -35,7 +35,7 @@ class MainState extends Equatable {
   List<Object> get props => [
         isLoading,
         isError,
-        isSuccess,
+        isSuccessedSignOut,
         isAuthenticated,
         email,
       ];

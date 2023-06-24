@@ -45,7 +45,7 @@ class MainCubit extends Cubit<MainState> {
       emit(
         state.copyWith(
           isAuthenticated: false,
-          isSuccess: true,
+          isSuccessedSignOut: true,
           isLoading: false,
         ),
       );
