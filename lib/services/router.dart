@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:ic_firebase/feature/main/presentation/pages/main_page.dart';
 
 import '../feature/authentication/signin/presentation/pages/sign_in_page.dart';
 import '../feature/authentication/signup/presentation/pages/sign_up_page.dart';
@@ -22,6 +23,10 @@ GoRouter router = GoRouter(
     GoRoute(
       path: '/auth/signin',
       builder: (context, state) => const SignInPage(),
+    ),
+    GoRoute(
+      path: '/main',
+      builder: (context, state) => const MainPage(),
     ),
   ],
 );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ic_firebase/core/theme/base_colors.dart';
 import 'package:ic_firebase/feature/onboarding/presentation/cubit/app_initialization_cubit.dart';
 import 'package:ic_firebase/services/di.dart';
@@ -29,11 +30,15 @@ late final AppInitializationCubit _cubit;
     return CustomScaffold(
       body: BlocListener<AppInitializationCubit, AppInitializationState>(
         listener: (context, state) {
-          
+          if (state.isAuthenticated) {
+            context.go('/main');
+          } else {
+            context.go('/onboarding');
+          }
         },
         child: Center(
           child: Text(
-            'datass',
+            'datas',
             style: TextStyle(
               color: BaseColors.primary,
             ),
