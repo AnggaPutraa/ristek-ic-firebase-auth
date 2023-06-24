@@ -32,7 +32,5 @@ class AppInitializationCubit extends Cubit<AppInitializationState> {
         ),
       );
     }
-
-    print(state);
   }
 }
