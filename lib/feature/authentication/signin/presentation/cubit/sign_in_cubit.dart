@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ic_firebase/feature/authentication/core/data/repositoreis/authentication_repository_impl.dart';
 import 'package:ic_firebase/feature/authentication/signin/domain/use_case/sign_in_params.dart';
@@ -31,6 +30,7 @@ class SignInCubit extends Cubit<SignInState> {
         state.copyWith(
           isError: true,
           isLoading: false,
+          isSuccess: true,
         ),
       );
     } catch (_) {

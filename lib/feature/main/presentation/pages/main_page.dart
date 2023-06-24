@@ -34,7 +34,7 @@ class _MainPageState extends State<MainPage> {
         bloc: _cubit,
         listener: (context, state) {
           if (state.isSuccessedSignOut) {
-            context.go('/');
+            context.go('/onboarding');
           }
         },
         builder: (context, state) => Center(

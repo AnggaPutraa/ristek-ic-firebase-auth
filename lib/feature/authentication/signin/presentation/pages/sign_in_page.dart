@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ic_firebase/feature/authentication/signin/presentation/cubit/sign_in_cubit.dart';
 import 'package:ic_firebase/services/di.dart';
@@ -57,51 +58,59 @@ class _SignInPageState extends State<SignInPage> {
               ],
             ),
           ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    Button(
-                      text: 'Sign In',
-                      onTap: () {
-                        _cubit.signIn(
-                          email: _email.value.text,
-                          password: _password.value.text,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Dont have an account yet? ',
-                      style: TextStyle(
-                        color: BaseColors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
+          BlocListener<SignInCubit, SignInState>(
+            bloc: _cubit,
+            listener: (context, state) {
+             if (state.isSuccess) {
+               context.go('/main');
+             }
+            },
+            child: Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Button(
+                        text: 'Sign In',
+                        onTap: () {
+                          _cubit.signIn(
+                            email: _email.value.text,
+                            password: _password.value.text,
+                          );
+                        },
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        context.go('/auth/signup');
-                      },
-                      child: const Text(
-                        'Sign Up',
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Dont have an account yet? ',
                         style: TextStyle(
-                          color: BaseColors.primary,
-                          fontWeight: FontWeight.w600,
+                          color: BaseColors.white,
+                          fontWeight: FontWeight.w500,
                           fontSize: 16,
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                      InkWell(
+                        onTap: () {
+                          context.go('/auth/signup');
+                        },
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            color: BaseColors.primary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ],

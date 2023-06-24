@@ -29,7 +29,6 @@ class SignUpCubit extends Cubit<SignUpState> {
         isSuccess: true,
       );
     } catch (_) {
-      print('object');
       state.copyWith(
         isLoading: false,
         isError: true,

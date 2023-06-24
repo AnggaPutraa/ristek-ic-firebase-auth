@@ -33,9 +33,9 @@ class OnBoardingPage extends StatelessWidget {
               Row(
                 children: [
                   Button(
-                    text: 'Sign Up',
+                    text: 'Sign In',
                     onTap: () {
-                      context.go('/auth/signup');
+                      context.go('/auth/signin');
                     },
                   ),
                 ],
@@ -44,9 +44,9 @@ class OnBoardingPage extends StatelessWidget {
               Row(
                 children: [
                   Button(
-                    text: 'Sign In',
+                    text: 'Sign Up',
                     onTap: () {
-                      context.go('/auth/signin');
+                      context.go('/auth/signup');
                     },
                   ),
                 ],
