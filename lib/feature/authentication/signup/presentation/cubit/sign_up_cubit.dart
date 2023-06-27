@@ -15,8 +15,10 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String email,
     required String password,
   }) async {
-    state.copyWith(
-      isLoading: true,
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
     );
     try {
       SignUpParams params = SignUpParams(
@@ -24,14 +26,16 @@ class SignUpCubit extends Cubit<SignUpState> {
         password: password,
       );
       await _repository.signUp(params);
-      state.copyWith(
+      emit(state.copyWith(
         isLoading: false,
         isSuccess: true,
-      );
+      ));
     } catch (_) {
-      state.copyWith(
-        isLoading: false,
-        isError: true,
+      emit(
+        state.copyWith(
+          isLoading: false,
+          isError: true,
+        ),
       );
     }
   }

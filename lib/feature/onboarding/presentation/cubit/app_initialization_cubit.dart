@@ -13,8 +13,10 @@ class AppInitializationCubit extends Cubit<AppInitializationState> {
   final AuthenticationRepository _repository = AuthenticationRepository();
 
   void init() async {
-    state.copyWith(
-      isLoading: true,
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
     );
     await Future.delayed(const Duration(seconds: 3), () {});
     final User? user = await _repository.currentUser();
